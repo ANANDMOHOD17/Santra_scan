@@ -2,16 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, AlertCircle, CheckCircle2, ChevronRight } from 'lucide-react';
 
+import { SEASONAL_CALENDAR_DATA } from '../data/orangeBookData';
+
 export default function SeasonalCalendar() {
   const { t, lang } = useLanguage();
-  const [calendar, setCalendar] = useState([]);
+  const [calendar, setCalendar] = useState(SEASONAL_CALENDAR_DATA);
   const [activeTab, setActiveTab] = useState('all'); // 'all', 'Ambia Bahar', 'Mrig Bahar'
 
   useEffect(() => {
     fetch('/api/orange-book/seasonal-calendar')
-      .then(r => r.ok ? r.json() : [])
-      .then(data => setCalendar(data))
-      .catch(() => {});
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setCalendar(data);
+        } else {
+          setCalendar(SEASONAL_CALENDAR_DATA);
+        }
+      })
+      .catch(() => {
+        setCalendar(SEASONAL_CALENDAR_DATA);
+      });
   }, []);
 
   const filteredItems = calendar.filter(item => {

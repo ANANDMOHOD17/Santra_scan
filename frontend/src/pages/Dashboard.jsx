@@ -20,6 +20,9 @@ import {
   Zap
 } from 'lucide-react';
 
+import orangeTreeImg from '../assets/orange_tree.png';
+import { BookOpen } from 'lucide-react';
+
 export default function Dashboard() {
   const { t, lang } = useLanguage();
   const { user } = useAuth();
@@ -45,42 +48,65 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-7 pb-28">
-      {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-soil to-forest text-white rounded-3xl p-6 sm:p-8 shadow-paper-lg relative overflow-hidden">
-        <div className="relative z-10 max-w-xl">
-          <div className="inline-flex items-center space-x-1.5 bg-white/15 px-3 py-1 rounded-full text-xs font-semibold mb-3 backdrop-blur-sm">
-            <span className="text-orange-mango">🍊</span>
-            <span>Vidarbha Citrus Quality Shield</span>
+      {/* Welcome Banner with Orange Tree Visual */}
+      <div className="bg-gradient-to-br from-[#1F3A24] via-[#2A482E] to-[#4A2E16] text-white rounded-3xl p-6 sm:p-8 shadow-paper-lg relative overflow-hidden border border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center relative z-10">
+          <div className="md:col-span-8 space-y-3">
+            <div className="inline-flex items-center space-x-1.5 bg-white/15 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border border-white/15">
+              <span className="text-orange-mango">🍊</span>
+              <span>Vidarbha Citrus Quality Shield</span>
+            </div>
+
+            <h1 className="font-serif text-2xl sm:text-4xl font-bold leading-tight">
+              {lang === 'mr' ? 'संत्रा रोप गुणवत्ता व डिजिटल ज्ञानकोश' : lang === 'hi' ? 'संतरा पौधा गुणवत्ता एवं डिजिटल ज्ञान केंद्र' : 'Orange Planting Material Assessment & Knowledge Base'}
+            </h1>
+            <p className="text-white/85 text-sm sm:text-base leading-relaxed max-w-xl">
+              {t('app_tagline')}
+            </p>
+
+            {/* Action Buttons (Scan vs Orange Book) */}
+            <div className="flex flex-wrap gap-2.5 pt-1">
+              <button
+                onClick={() => navigate('/scan?mode=sapling')}
+                className="py-3 px-5 bg-orange text-white hover:bg-orange-deep font-serif font-bold text-sm rounded-2xl shadow-paper flex items-center justify-center space-x-2 active:scale-95 transition-all"
+              >
+                <ScanLine className="w-4 h-4" />
+                <span>{lang === 'mr' ? 'कलमी रोप स्कॅन करा' : lang === 'hi' ? 'कलमी पौधा स्कैन करें' : 'Scan Orange Sapling'}</span>
+              </button>
+
+              <button
+                onClick={() => navigate('/orange-book')}
+                className="py-3 px-5 bg-white/15 hover:bg-white/25 text-white font-serif font-bold text-sm rounded-2xl border border-white/25 flex items-center justify-center space-x-2 active:scale-95 transition-all backdrop-blur-sm"
+              >
+                <BookOpen className="w-4 h-4 text-orange-mango" />
+                <span>{lang === 'mr' ? 'ऑरेंज बुक (ज्ञानकोश)' : lang === 'hi' ? 'ऑरेंज बुक (ज्ञान केंद्र)' : 'The Orange Book'}</span>
+              </button>
+            </div>
           </div>
-          <h1 className="font-serif text-2xl sm:text-4xl font-bold mb-2 leading-tight">
-            {lang === 'mr' ? 'संत्रा रोप गुणवत्ता तपासणी' : lang === 'hi' ? 'संतरा पौधा गुणवत्ता जांच' : 'Orange Planting Material Assessment'}
-          </h1>
-          <p className="text-white/80 text-sm sm:text-base mb-6 leading-relaxed">
-            {t('app_tagline')}
-          </p>
 
-          {/* Dual Action Buttons (Sapling vs Mature Tree) */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => navigate('/scan?mode=sapling')}
-              className="py-3.5 px-6 bg-orange text-white hover:bg-orange-deep font-serif font-bold text-base rounded-2xl shadow-paper flex items-center justify-center space-x-2 active:scale-95 transition-all"
+          {/* Orange Tree Showcase Thumbnail */}
+          <div className="md:col-span-4 flex justify-center md:justify-end">
+            <div 
+              onClick={() => navigate('/orange-book')}
+              className="relative group cursor-pointer"
             >
-              <ScanLine className="w-5 h-5" />
-              <span>{lang === 'mr' ? 'कलमी रोप स्कॅन करा' : lang === 'hi' ? 'कलमी पौधा स्कैन करें' : 'Scan Orange Sapling'}</span>
-            </button>
-
-            <button
-              onClick={() => navigate('/scan?mode=mature_tree')}
-              className="py-3.5 px-6 bg-white/20 hover:bg-white/30 text-white font-serif font-bold text-base rounded-2xl border border-white/30 flex items-center justify-center space-x-2 active:scale-95 transition-all backdrop-blur-sm"
-            >
-              <TreePine className="w-5 h-5 text-leaf-fresh" />
-              <span>{lang === 'mr' ? 'मोठे झाड तपासा' : lang === 'hi' ? 'बड़ा पेड़ जांचें' : 'Check Mature Tree'}</span>
-            </button>
+              <div className="absolute inset-0 bg-orange/20 rounded-full blur-xl group-hover:bg-orange/40 transition-all" />
+              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-white/10 backdrop-blur-md p-2.5 border border-white/20 shadow-xl flex flex-col items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                <img 
+                  src={orangeTreeImg} 
+                  alt="Nagpur Mandarin Orange Tree" 
+                  className="w-full h-full object-contain filter drop-shadow-md"
+                />
+                <span className="absolute bottom-1.5 bg-ink/80 text-orange-mango text-[9px] font-bold px-2 py-0.5 rounded-full border border-white/10">
+                  Nagpur Mandarin
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Decorative background watermark */}
-        <div className="absolute -right-6 -bottom-10 opacity-15 text-[180px] pointer-events-none select-none">
+        <div className="absolute -right-6 -bottom-10 opacity-10 text-[180px] pointer-events-none select-none">
           🍊
         </div>
       </div>
