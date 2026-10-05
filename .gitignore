@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+.npm/
+
+# Build outputs
+dist/
+frontend/dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+*.egg
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+santrascan.db
+backend/santrascan.db
+
+# Uploads
+backend/uploads/heatmaps/*
+backend/uploads/qrcodes/*
+!backend/uploads/.gitkeep
+!backend/uploads/heatmaps/.gitkeep
+!backend/uploads/qrcodes/.gitkeep
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
