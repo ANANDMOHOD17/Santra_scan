@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #FBF7EE;
+  color: #1D2A1F;
+  font-family: 'Noto Sans', 'Noto Sans Devanagari', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Liquid glass effects as requested for bottom nav, verdict card, camera overlay */
+.liquid-glass {
+  background: rgba(251, 247, 238, 0.78);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(217, 111, 0, 0.12);
+}
+
+.liquid-glass-dark {
+  background: rgba(29, 42, 31, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.paper-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(29, 42, 31, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 3px 12px -2px rgba(29, 42, 31, 0.05);
+}
+
+.paper-tag {
+  background: #EFE8D8;
+  border: 1px solid rgba(107, 74, 47, 0.15);
+  font-family: 'Kalam', cursive;
+}
+
+/* Pulse animation for live analysis radar */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radar-sweep {
+  animation: radar-sweep 2.5s linear infinite;
+}
+
+/* Print styling for QR Plant Passport */
+@media print {
+  body {
+    background: #FFFFFF !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .passport-print-box {
+    box-shadow: none !important;
+    border: 2px solid #1D2A1F !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}
