@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { RealtimeProvider, useRealtime } from './context/RealtimeContext';
@@ -118,9 +118,9 @@ export default function App() {
     <AuthProvider>
       <RealtimeProvider>
         <LanguageProvider>
-          <BrowserRouter>
+          <Router>
             <MainAppShell />
-          </BrowserRouter>
+          </Router>
         </LanguageProvider>
       </RealtimeProvider>
     </AuthProvider>
